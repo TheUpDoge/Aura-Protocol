@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Protocol - Own Your Retirement</title>
+    <style>
+        /* --- Global Styles & Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-dark: #121212;
+            --bg-light: #1a1a1a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #E7C65F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding-top: 180px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1.5rem auto 2.5rem;
+        }
+
+        /* --- Features/Problem/Solution Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-card {
+            background-color: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* --- Roadmap Section --- */
+        #roadmap {
+            background-color: var(--bg-light);
+        }
+        .roadmap-container {
+            position: relative;
+            padding: 20px 0;
+        }
+        .roadmap-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #333;
+            transform: translateX(-2px);
+        }
+        .roadmap-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .roadmap-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        .roadmap-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+        .roadmap-content {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        .roadmap-dot {
+            height: 20px;
+            width: 20px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .roadmap-item:nth-child(odd) .roadmap-dot {
+            right: -10px;
+        }
+        .roadmap-item:nth-child(even) .roadmap-dot {
+            left: -10px;
+        }
+        .roadmap-item h3 { color: var(--accent-gold); }
+
+        /* --- Community Section --- */
+        .community {
+            text-align: center;
+        }
+        .community p {
+            max-width: 600px;
+            margin: 1rem auto 2rem;
+            color: var(--text-secondary);
+        }
+        .community .btn {
+            margin: 0 10px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--bg-light);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        .footer p { margin-bottom: 10px; }
+        .footer a { color: var(--text-secondary); text-decoration: none; }
+        .footer a:hover { color: var(--accent-gold); }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simple responsive menu for now */
+            .roadmap-line { left: 20px; }
+            .roadmap-item { width: 100%; left: 0 !important; padding-left: 60px; padding-right: 0; text-align: left !important; }
+            .roadmap-dot { left: 10px !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10L60 25H40L50 10Z" fill="#D4AF37"/>
+                    <path d="M25 30L40 25H60L75 30L90 50L75 70L60 75H40L25 70L10 50L25 30Z" stroke="#D4AF37" stroke-width="5"/>
+                    <path d="M50 90L40 75H60L50 90Z" fill="#D4AF37"/>
+                    <path d="M25 30L10 50L25 70" stroke="#F0F0F0" stroke-width="3"/>
+                    <path d="M75 30L90 50L75 70" stroke="#F0F0F0" stroke-width="3"/>
+                </svg>
+                <span>Aura</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#protocol">The Protocol</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="https://github.com/TheUpDoge/Aura-Protocol/blob/main/README.md" target="_blank" class="btn btn-primary">Read Whitepaper</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Own Your Retirement.</h1>
+                <p>A decentralized savings protocol for the sovereign individual. Stop renting your future—start building it.</p>
+                <a href="https://github.com/TheUpDoge/Aura-Protocol/blob/main/README.md" target="_blank" class="btn btn-primary">Read the Whitepaper on GitHub</a>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem">
+            <div class="container">
+                <h2 style="text-align: center;">Traditional Retirement is Failing.</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">⛓️</div>
+                        <h3>Exclusionary</h3>
+                        <p>Tied to corporate employment, leaving freelancers and gig workers behind.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌫️</div>
+                        <h3>Opaque</h3>
+                        <p>Hidden fees and complex rules give you little control over your own money.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🚧</div>
+                        <h3>High Friction</h3>
+                        <p>Difficult to contribute small, variable amounts of income consistently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="protocol" style="background-color: var(--bg-light);">
+            <div class="container">
+                <h2 style="text-align: center;">Aura: A New Paradigm.</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h3>Frictionless Savings</h3>
+                        <p>Instantly save any amount, anytime, directly from your phone. Your digital piggy bank for the future.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔒</div>
+                        <h3>The Aura Lock</h3>
+                        <p>Lock your ARC tokens to earn rewards. The longer you commit, the more you earn.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">✨</div>
+                        <h3>The Aura Match</h3>
+                        <p>Our protocol rewards you for consistent saving habits with bonus tokens.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section id="roadmap">
+            <div class="container">
+                <h2 style="text-align: center;">Our Path to Decentralization</h2>
+                <div class="roadmap-container">
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-content">
+                            <h3>Phase 1: Foundation</h3>
+                            <p>Whitepaper Release, Community Launch, and Seed Funding. (Q3-Q4 2025)</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-content">
+                            <h3>Phase 2: Development</h3>
+                            <p>Smart Contract Development, Security Audits, and Public Testnet Launch. (Q1 2026)</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-content">
+                            <h3>Phase 3: Launch</h3>
+                            <p>Public Sale (IDO), Mainnet Deployment on Polygon, and dApp v1.0 Release. (Q2 2026)</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-content">
+                            <h3>Phase 4: Expansion</h3>
+                            <p>AuraDAO Activation, Solana Bridge Development, and Multi-Chain Deployment. (Q3-Q4 2026)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community">
+            <div class="container">
+                <h2>Build the Future With Us.</h2>
+                <p>Aura is more than a protocol; it's a community. Join the conversation, ask questions, and help shape the future of retirement.</p>
+                <div>
+                    <a href="#" class="btn btn-primary">Join our Discord</a>
+                    <a href="#" class="btn btn-secondary">Follow on Twitter</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Aura Protocol © 2025</p>
+            <a href="https://github.com/TheUpDoge/Aura-Protocol/blob/main/README.md" target="_blank">Whitepaper</a> | 
+            <a href="#">Legal Disclaimer</a>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
